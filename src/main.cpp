@@ -1,21 +1,22 @@
 #include <Arduino.h>
-#define led1 6
-#define led2 7
-int logic1 ;
-int logic2 ;
-int dem = 0;
+#define led 8
+#define button 2
+int dem =0;
 void setup() {
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
+  Serial.begin(9600);
+  pinMode(button,INPUT_PULLUP);
+  pinMode(led,OUTPUT);
 }
 void loop() {
-  dem++;
-  delay(1000);
-  logic1 = !logic1;
-  digitalWrite(led1, logic1);
-  if(dem ==3){
-    logic2 = !logic2;
-    digitalWrite(led2, logic2);
-    dem = 0;
+  if(digitalRead(button)==0){
+    dem++;
+    Serial.print("gia tri bien dem: ");
+    Serial.println(dem);
+  }
+  if(dem%2==1){
+    digitalWrite(led,HIGH);
+  }
+  else{
+    digitalWrite(led,LOW);
   }
 }
