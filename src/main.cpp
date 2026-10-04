@@ -9,6 +9,7 @@ void setup() {
 }
 void loop() {
   if(digitalRead(button)==0){
+    while(digitalRead(button) ==0);
     dem++;
     Serial.print("gia tri bien dem: ");
     Serial.println(dem);
